@@ -44,7 +44,7 @@ class SumCoveragePerBin(countReadsPerBin.CountReadsPerBin):
             nbins = 0
             for reg in regions:
                 nbins += (reg[1] - reg[0]) // reg[2]
-        coverages = np.zeros(nbins, dtype='float64')
+        coverages = np.zeros(nbins, dtype=np.float64)
 
         if self.defaultFragmentLength == 'read length':
             extension = 0
@@ -90,7 +90,7 @@ class SumCoveragePerBin(countReadsPerBin.CountReadsPerBin):
             except:
                 # bigWig input, as used by plotFingerprint
                 if bamHandle.chroms(chrom):
-                    _ = np.array(bamHandle.stats(chrom, regStart, regEnd, type="mean", nBins=nRegBins), dtype=float64)
+                    _ = np.array(bamHandle.stats(chrom, regStart, regEnd, type="mean", nBins=nRegBins), dtype=np.float64)
                     _[np.isnan(_)] = 0.0
                     _ = _ * tileSize
                     coverages += _
